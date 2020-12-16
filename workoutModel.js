@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const WorkoutSchema = new Schema({
-    exerciseType : {
+    type : {
         type : String,
         required : true
     },
-    exerciseName : {
+    name : {
         type : String,
         required : true
     },
