@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const mongojs = require('mongojs');
 
-mongoose.connect(PROCESS.ENV.MONGODB_URI || "mongodb://localhost/workout", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -12,7 +12,7 @@ mongoose.connect(PROCESS.ENV.MONGODB_URI || "mongodb://localhost/workout", {
 
 const db = require('./models');
 
-const PORT = PROCESS.ENV.PORT ||3000;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 app.use(logger("dev")); // use morgan for logging
