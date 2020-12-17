@@ -36,21 +36,28 @@ app.get('/api/workouts/range', (req, res) => {
     });
 });
 
+// get last workout
+app.get('/api/workouts/', (req, res) => {
+    db.Workout.find().sort({day : 1 }).then( (result) => {
+        res.json(result);
+    })
+})
+
 // new workout
 app.post('/api/workouts/', (req, res) => {
-    db.Workout.create({}).then( (result) => {
-        console.log(result);
+    const workoutToDo = new db.Workout();
+    db.Workout.create(workoutToDo).then( (result) => {
         res.json(result);
     });
 });
 
-// update workout
+// update (new) workout
 app.put('/api/workouts/:id', (req, res) => {
-    let idToUpdate = req.params.id;
-    db.Workout.updateOne({_id : mongojs.ObjectID(idToUpdate)}, {$push : {exercises : req.body}}, (err, result) => {
+    db.Workout.updateOne({_id : mongojs.ObjectID(req.params.id)}, {$push : {exercises : req.body}}, (err, result) => {
         res.json(result);
     });
 });
+
 
 // -----------------------------------------------------
 
